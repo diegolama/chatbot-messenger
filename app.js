@@ -11,18 +11,18 @@ app.use(bodyParser.json())
 var conversation_id = "";
 var w_conversation = watson.conversation({
     url: 'https://gateway.watsonplatform.net/conversation/api',
-    username: process.env.CONVERSATION_USERNAME || 'paste conversation api username here',
-    password: process.env.CONVERSATION_PASSWORD || 'paste conversation api password here',
+    username: process.env.CONVERSATION_USERNAME || '2a102f34-3294-4d2c-b1a9-366c4a4439e8',
+    password: process.env.CONVERSATION_PASSWORD || 'UvTrgtfeKFIB',
     version: 'v1',
     version_date: '2016-07-11'
 });
 var workspace = process.env.WORKSPACE_ID || 'workspaceId';
 
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'paste FB token here') {
+    if (req.query['hub.verify_token'] === 'EAAXZArnlAeOYBAKrjp7iX4hCW5W0QZCUb3kBeCmB25NKbXnDW6JZBZCDzD0uLrwAcITuQWjPtTY8oNg2HnOyCU8xUSSX84nNj9mIjyACQdlmwAOMiZATXSzKyhpTQkKefuchjcTZAx6yQucxapZApInLgxwY6XZABakClNHeysaS7QZDZD') {
         res.send(req.query['hub.challenge']);
     }
-    res.send('Erro de validação no token.');
+    res.send('Error de validación del token.');
 });
 
 app.post('/webhook/', function (req, res) {
@@ -48,7 +48,7 @@ app.post('/webhook/', function (req, res) {
 		}
 
 		var payload = {
-			workspace_id: "paste workspace ID here"
+			workspace_id: "40656ff2-e6da-4a96-946f-cde769e9ef21"
 		};
 
 		if (params) {
@@ -71,7 +71,7 @@ function callWatson(payload, sender) {
 		contexid = convResults.context;
 		
         if (err) {
-            return responseToRequest.send("Erro.");
+            return responseToRequest.send("Error.");
         }
 		
 		if(convResults.context != null)
@@ -107,7 +107,7 @@ function sendMessage(sender, text_) {
     });
 };
 
-var token = "paste FB token here";
+var token = "EAAXZArnlAeOYBAKrjp7iX4hCW5W0QZCUb3kBeCmB25NKbXnDW6JZBZCDzD0uLrwAcITuQWjPtTY8oNg2HnOyCU8xUSSX84nNj9mIjyACQdlmwAOMiZATXSzKyhpTQkKefuchjcTZAx6yQucxapZApInLgxwY6XZABakClNHeysaS7QZDZD";
 var host = (process.env.VCAP_APP_HOST || 'localhost');
 var port = (process.env.VCAP_APP_PORT || 3000);
 app.listen(port, host);
